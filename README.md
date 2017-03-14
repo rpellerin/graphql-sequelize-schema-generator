@@ -34,8 +34,10 @@ var app = express()
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: graphqlSchema(models),
+    schema: graphqlSchemaGenerator(models),
     graphiql: true
   })
 )
+
+// ...
 ```
