@@ -1,23 +1,23 @@
-# graphql-schema-generator
+# graphql-sequelize-schema-generator
 
 A helper function to automatically generate `GraphQLSchema` from Sequelize models.
 
 ## Installation
 
 ```bash
-yarn add graphql-schema-generator
+yarn add graphql-sequelize-schema-generator
 ```
 
 or
 
 ```bash
-npm install graphql-schema-generator
+npm install graphql-sequelize-schema-generator
 ```
 
 ## Usage
 
 ```javascript
-var graphqlSchemaGenerator = require('graphql-schema-generator')
+var graphqlSchemaGenerator = require('graphql-sequelize-schema-generator')
 var models = require('./models')
 var schema = graphqlSchema(models)
 ```
@@ -27,7 +27,7 @@ var schema = graphqlSchema(models)
 ```javascript
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
-const graphqlSchemaGenerator = require('graphql-schema-generator')
+const graphqlSchemaGenerator = require('graphql-sequelize-schema-generator')
 const models = require('./models')
 
 var app = express()

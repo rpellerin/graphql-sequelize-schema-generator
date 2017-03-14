@@ -1,5 +1,5 @@
 {
-  "name": "graphql-schema-generator",
+  "name": "graphql-sequelize-schema-generator",
   "version": "0.1.0",
   "description": "A helper function to automatically generate `GraphQLSchema` from Sequelize models.",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpellerin/graphql-schema-generator.git"
+    "url": "git+https://github.com/rpellerin/graphql-sequelize-schema-generator.git"
   },
   "keywords": [
     "graphql",
@@ -18,9 +18,9 @@
   "author": "Romain Pellerin <romain.pellerin@inovia-team.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rpellerin/graphql-schema-generator/issues"
+    "url": "https://github.com/rpellerin/graphql-sequelize-schema-generator/issues"
   },
-  "homepage": "https://github.com/rpellerin/graphql-schema-generator#readme",
+  "homepage": "https://github.com/rpellerin/graphql-sequelize-schema-generator#readme",
   "dependencies": {
     "graphql-sequelize": "^5.3.1"
   },
