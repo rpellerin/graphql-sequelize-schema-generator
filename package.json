@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --presets babel-preset-es2015 --out-dir dist",
     "format": "prettier-eslint \"src/*.js\"",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "check": "npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
