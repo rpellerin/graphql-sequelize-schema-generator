@@ -2,6 +2,8 @@
 
 A helper function to automatically generate `GraphQLSchema` from Sequelize models.
 
+[![npm version](https://badge.fury.io/js/graphql-sequelize-schema-generator.svg)](https://badge.fury.io/js/graphql-sequelize-schema-generator)
+
 ## Installation
 
 ```bash
