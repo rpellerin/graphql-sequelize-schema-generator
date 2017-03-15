@@ -1,9 +1,7 @@
 const {
   GraphQLSchema,
   GraphQLObjectType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt
+  GraphQLList
 } = require('graphql')
 const {resolver, attributeFields} = require('graphql-sequelize')
 
@@ -42,14 +40,15 @@ const generateAssociationFields = (associations, types) => {
  * @param {*} model The sequelize model used to create the `GraphQLObjectType`
  * @param {*} types Existing `GraphQLObjectType` types, created from all the Sequelize models
  */
-const generateGraphQLType = (model, types) => new GraphQLObjectType({
-  name: model.name,
-  fields: () =>
-    Object.assign(
-      attributeFields(model),
-      generateAssociationFields(model.associations, types)
-    )
-})
+const generateGraphQLType = (model, types) =>
+  new GraphQLObjectType({
+    name: model.name,
+    fields: () =>
+      Object.assign(
+        attributeFields(model),
+        generateAssociationFields(model.associations, types)
+      )
+  })
 
 /**
  * Returns a collection of `GraphQLObjectType` generated from Sequelize models.
@@ -76,21 +75,23 @@ const generateModelTypes = models => {
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the root `GraphQLSchema`
  */
-const generateQueryRootType = models => new GraphQLObjectType({
-  name: 'Root',
-  fields: Object.values(generateModelTypes(models)).reduce((
-    fields,
-    modelType
-  ) => {
-    return Object.assign(fields, {
-      [`${modelType.name}s`]: {
-        type: new GraphQLList(modelType),
-        resolve: resolver(models[modelType.name])
-      }
-    })
-  }, {})
-})
+const generateQueryRootType = models =>
+  new GraphQLObjectType({
+    name: 'Root',
+    fields: Object.values(generateModelTypes(models)).reduce(
+      (fields, modelType) => {
+        return Object.assign(fields, {
+          [`${modelType.name}s`]: {
+            type: new GraphQLList(modelType),
+            resolve: resolver(models[modelType.name])
+          }
+        })
+      },
+      {}
+    )
+  })
 
-module.exports = models => new GraphQLSchema({
-  query: generateQueryRootType(models)
-})
+module.exports = models =>
+  new GraphQLSchema({
+    query: generateQueryRootType(models)
+  })
