@@ -20,7 +20,7 @@ npm install graphql-sequelize-schema-generator
 
 ## Prerequisites
 
-This package assumes you have `graphql` and `graphql-relay` already installed.
+This package assumes you have `graphql` and `sequelize` already installed (both packages are declared as `dependencies` and `peerDependencies`).
 
 ```bash
 yarn add graphql graphql-relay
