@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - "7"
+
+sudo: false
+
+cache:
+  yarn: true
+  directories:
+    - ".eslintcache"
+    - "node_modules"
+
+script:
+  - yarn run check

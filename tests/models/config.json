@@ -1,0 +1,6 @@
+{
+  "test": {
+    "storage":"data.db",
+    "dialect": "sqlite"
+  }
+}
