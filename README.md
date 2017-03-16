@@ -31,7 +31,7 @@ yarn add graphql graphql-relay
 ```javascript
 var graphqlSchemaGenerator = require('graphql-sequelize-schema-generator')
 var models = require('./models')
-var schema = graphqlSchema(models) // Generates the schema
+var schema = graphqlSchemaGenerator(models) // Generates the schema
 ```
 
 ### Example with Express
