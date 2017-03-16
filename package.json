@@ -44,7 +44,8 @@
     "prettier-eslint-cli": "^3.1.2"
   },
   "peerDependencies": {
-    "graphql": "^0.9.1"
+    "graphql": "^0.9.1",
+    "sequelize": "^3.30.2"
   },
   "jest": {
     "testEnvironment": "node",
