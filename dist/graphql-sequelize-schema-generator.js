@@ -5,9 +5,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var _require = require('graphql'),
     GraphQLSchema = _require.GraphQLSchema,
     GraphQLObjectType = _require.GraphQLObjectType,
-    GraphQLString = _require.GraphQLString,
-    GraphQLList = _require.GraphQLList,
-    GraphQLInt = _require.GraphQLInt;
+    GraphQLList = _require.GraphQLList;
 
 var _require2 = require('graphql-sequelize'),
     resolver = _require2.resolver,
@@ -82,9 +80,11 @@ var generateModelTypes = function generateModelTypes(models) {
  * @param {*} models The sequelize models used to create the root `GraphQLSchema`
  */
 var generateQueryRootType = function generateQueryRootType(models) {
+  var modelTypes = generateModelTypes(models);
   return new GraphQLObjectType({
     name: 'Root',
-    fields: Object.values(generateModelTypes(models)).reduce(function (fields, modelType) {
+    fields: Object.keys(modelTypes).reduce(function (fields, modelTypeName) {
+      var modelType = modelTypes[modelTypeName];
       return Object.assign(fields, _defineProperty({}, modelType.name + 's', {
         type: new GraphQLList(modelType),
         resolve: resolver(models[modelType.name])
