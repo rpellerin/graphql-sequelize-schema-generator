@@ -85,7 +85,7 @@ var generateQueryRootType = function generateQueryRootType(models) {
     name: 'Root',
     fields: Object.keys(modelTypes).reduce(function (fields, modelTypeName) {
       var modelType = modelTypes[modelTypeName];
-      return Object.assign(fields, _defineProperty({}, modelType.name + 's', {
+      return Object.assign(fields, _defineProperty({}, modelType.name, {
         type: new GraphQLList(modelType),
         resolve: resolver(models[modelType.name])
       }));
