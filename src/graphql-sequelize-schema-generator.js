@@ -1,5 +1,4 @@
 const {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLList
 } = require('graphql')
@@ -83,7 +82,8 @@ const generateQueryRootType = models => {
       (fields, modelTypeName) => {
         const modelType = modelTypes[modelTypeName]
         return Object.assign(fields, {
-          [modelType.name]: {
+          [modelType.name + 's']: {
+            // TODO remove 's'
             type: new GraphQLList(modelType),
             resolve: resolver(models[modelType.name])
           }
@@ -94,7 +94,6 @@ const generateQueryRootType = models => {
   })
 }
 
-module.exports = models =>
-  new GraphQLSchema({
-    query: generateQueryRootType(models)
-  })
+module.exports = models => ({
+  query: generateQueryRootType(models)
+})

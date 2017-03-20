@@ -1,10 +1,10 @@
 {
   "test": {
-    "storage":"data.db",
+    "storage": "tests/database.db",
     "dialect": "sqlite"
   },
   "development": {
-    "storage":"data.db",
+    "storage": "tests/database.db",
     "dialect": "sqlite"
   }
 }
