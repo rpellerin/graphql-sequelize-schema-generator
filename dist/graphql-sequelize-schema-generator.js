@@ -3,7 +3,6 @@
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _require = require('graphql'),
-    GraphQLSchema = _require.GraphQLSchema,
     GraphQLObjectType = _require.GraphQLObjectType,
     GraphQLList = _require.GraphQLList;
 
@@ -85,7 +84,8 @@ var generateQueryRootType = function generateQueryRootType(models) {
     name: 'Root',
     fields: Object.keys(modelTypes).reduce(function (fields, modelTypeName) {
       var modelType = modelTypes[modelTypeName];
-      return Object.assign(fields, _defineProperty({}, modelType.name, {
+      return Object.assign(fields, _defineProperty({}, modelType.name + 's', {
+        // TODO remove 's'
         type: new GraphQLList(modelType),
         resolve: resolver(models[modelType.name])
       }));
@@ -94,7 +94,7 @@ var generateQueryRootType = function generateQueryRootType(models) {
 };
 
 module.exports = function (models) {
-  return new GraphQLSchema({
+  return {
     query: generateQueryRootType(models)
-  });
+  };
 };
