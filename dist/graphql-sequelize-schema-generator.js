@@ -78,8 +78,8 @@ var generateModelTypes = function generateModelTypes(models) {
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the root `GraphQLSchema`
  */
-var generateQueryRootType = function generateQueryRootType(models) {
-  var modelTypes = generateModelTypes(models);
+var generateQueryRootType = function generateQueryRootType(models, types) {
+  var modelTypes = types || generateModelTypes(models);
   return new GraphQLObjectType({
     name: 'Root',
     fields: Object.keys(modelTypes).reduce(function (fields, modelTypeName) {
@@ -93,8 +93,13 @@ var generateQueryRootType = function generateQueryRootType(models) {
   });
 };
 
-module.exports = function (models) {
+var generateSchema = function generateSchema(models, types) {
   return {
-    query: generateQueryRootType(models)
+    query: generateQueryRootType(models, types)
   };
+};
+
+module.exports = {
+  generateModelTypes: generateModelTypes,
+  generateSchema: generateSchema
 };
