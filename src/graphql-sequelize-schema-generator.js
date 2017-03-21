@@ -1,6 +1,9 @@
 const {
   GraphQLObjectType,
-  GraphQLList
+  GraphQLInputObjectType,
+  GraphQLList,
+  GraphQLInt,
+  GraphQLNonNull
 } = require('graphql')
 const {resolver, attributeFields} = require('graphql-sequelize')
 
@@ -13,7 +16,7 @@ const {resolver, attributeFields} = require('graphql-sequelize')
  * @param {*} associations A collection of sequelize associations
  * @param {*} types Existing `GraphQLObjectType` types, created from all the Sequelize models
  */
-const generateAssociationFields = (associations, types) => {
+const generateAssociationFields = (associations, types, isInput = false) => {
   let fields = {}
   for (let associationName in associations) {
     const relation = associations[associationName]
@@ -24,8 +27,11 @@ const generateAssociationFields = (associations, types) => {
       : types[relation.target.name]
 
     fields[associationName] = {
-      type,
-      resolve: resolver(relation)
+      type
+    }
+    if (!isInput) {
+      // GraphQLInputObjectType do not accept fields with resolve
+      fields[associationName].resolve = resolver(relation)
     }
   }
   return fields
@@ -39,15 +45,19 @@ const generateAssociationFields = (associations, types) => {
  * @param {*} model The sequelize model used to create the `GraphQLObjectType`
  * @param {*} types Existing `GraphQLObjectType` types, created from all the Sequelize models
  */
-const generateGraphQLType = (model, types) =>
-  new GraphQLObjectType({
-    name: model.name,
+const generateGraphQLType = (model, types, isInput = false) => {
+  const GraphQLClass = isInput ? GraphQLInputObjectType : GraphQLObjectType
+  return new GraphQLClass({
+    name: isInput ? `${model.name}Input` : model.name,
     fields: () =>
       Object.assign(
-        attributeFields(model),
-        generateAssociationFields(model.associations, types)
+        attributeFields(model, {
+          allowNull: !!isInput
+        }),
+        generateAssociationFields(model.associations, types, isInput)
       )
   })
+}
 
 /**
  * Returns a collection of `GraphQLObjectType` generated from Sequelize models.
@@ -56,15 +66,25 @@ const generateGraphQLType = (model, types) =>
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the types
  */
+// This function is exported
 const generateModelTypes = models => {
-  let types = {}
+  let outputTypes = {}
+  let inputTypes = {}
   for (let modelName in models) {
     // Only our models, not Sequelize nor sequelize
     if (models[modelName].hasOwnProperty('name') && modelName !== 'Sequelize') {
-      types[modelName] = generateGraphQLType(models[modelName], types)
+      outputTypes[modelName] = generateGraphQLType(
+        models[modelName],
+        outputTypes
+      )
+      inputTypes[modelName] = generateGraphQLType(
+        models[modelName],
+        inputTypes,
+        true
+      )
     }
   }
-  return types
+  return {outputTypes, inputTypes}
 }
 
 /**
@@ -74,16 +94,14 @@ const generateModelTypes = models => {
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the root `GraphQLSchema`
  */
-const generateQueryRootType = models => {
-  const modelTypes = generateModelTypes(models)
+const generateQueryRootType = (models, outputTypes) => {
   return new GraphQLObjectType({
-    name: 'Root',
-    fields: Object.keys(modelTypes).reduce(
+    name: 'Root_Query',
+    fields: Object.keys(outputTypes).reduce(
       (fields, modelTypeName) => {
-        const modelType = modelTypes[modelTypeName]
+        const modelType = outputTypes[modelTypeName]
         return Object.assign(fields, {
-          [modelType.name + 's']: {
-            // TODO remove 's'
+          [modelType.name]: {
             type: new GraphQLList(modelType),
             resolve: resolver(models[modelType.name])
           }
@@ -94,6 +112,67 @@ const generateQueryRootType = models => {
   })
 }
 
-module.exports = models => ({
-  query: generateQueryRootType(models)
-})
+const generateMutationRootType = (models, inputTypes, outputTypes) => {
+  return new GraphQLObjectType({
+    name: 'Root_Mutations',
+    fields: Object.keys(inputTypes).reduce(
+      (fields, inputTypeName) => {
+        const inputType = inputTypes[inputTypeName]
+        const toReturn = Object.assign(fields, {
+          [inputTypeName + 'Create']: {
+            type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
+            description: 'Create a ' + inputTypeName,
+            args: {
+              [inputTypeName]: {type: inputType}
+            },
+            resolve: (source, model, context, info) => {
+              return models[inputTypeName].create(model[inputTypeName])
+            }
+          },
+          [inputTypeName + 'Update']: {
+            type: GraphQLInt,
+            description: 'Update a ' + inputTypeName,
+            args: {
+              [inputTypeName]: {type: inputType}
+            },
+            resolve: (source, model) => {
+              return models[inputTypeName].update(model[inputTypeName], {
+                where: {id: model[inputTypeName].id}
+              }) // Returns the number of rows affected (0 or 1)
+            }
+          },
+          [inputTypeName + 'Delete']: {
+            type: GraphQLInt,
+            description: 'Delete a ' + inputTypeName,
+            args: {
+              id: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve: (value, {id}) =>
+              models[inputTypeName].destroy({where: {id}}) // Returns the number of rows affected (0 or 1)
+          }
+        })
+        return toReturn
+      },
+      {}
+    )
+  })
+}
+
+// This function is exported
+const generateSchema = (models, types) => {
+  const modelTypes = types || generateModelTypes(models)
+  return {
+    query: generateQueryRootType(models, modelTypes.outputTypes),
+    mutation: generateMutationRootType(
+      models,
+      modelTypes.inputTypes,
+      modelTypes.outputTypes
+    )
+  }
+}
+
+module.exports = {
+  generateGraphQLType,
+  generateModelTypes,
+  generateSchema
+}
