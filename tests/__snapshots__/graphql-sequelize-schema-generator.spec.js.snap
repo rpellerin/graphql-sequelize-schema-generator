@@ -3,11 +3,11 @@
 exports[`outputs the correct schema (build version) 1`] = `
 "Object{
   query: GraphQLObjectType{
-    name: \\"Root\\",
+    name: \\"Root_Query\\",
     description: undefined,
     isTypeOf: undefined,
     _typeConfig: Object{
-      name: \\"Root\\",
+      name: \\"Root_Query\\",
       fields: Object{
         Departments: Object{
           type: GraphQLList{
@@ -74,11 +74,11 @@ exports[`outputs the correct schema (build version) 1`] = `
 exports[`outputs the correct schema 1`] = `
 "Object{
   query: GraphQLObjectType{
-    name: \\"Root\\",
+    name: \\"Root_Query\\",
     description: undefined,
     isTypeOf: undefined,
     _typeConfig: Object{
-      name: \\"Root\\",
+      name: \\"Root_Query\\",
       fields: Object{
         Departments: Object{
           type: GraphQLList{

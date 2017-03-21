@@ -4,6 +4,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _require = require('graphql'),
     GraphQLObjectType = _require.GraphQLObjectType,
+    GraphQLInputObjectType = _require.GraphQLInputObjectType,
     GraphQLList = _require.GraphQLList;
 
 var _require2 = require('graphql-sequelize'),
@@ -22,6 +23,8 @@ var _require2 = require('graphql-sequelize'),
 
 
 var generateAssociationFields = function generateAssociationFields(associations, types) {
+  var isInput = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
   var fields = {};
   for (var associationName in associations) {
     var relation = associations[associationName];
@@ -29,9 +32,12 @@ var generateAssociationFields = function generateAssociationFields(associations,
     var type = relation.associationType === 'BelongsToMany' || relation.associationType === 'HasMany' ? new GraphQLList(types[relation.target.name]) : types[relation.target.name];
 
     fields[associationName] = {
-      type: type,
-      resolve: resolver(relation)
+      type: type
     };
+    if (!isInput) {
+      // GraphQLInputObjectType do not accept fields with resolve
+      fields[associationName].resolve = resolver(relation);
+    }
   }
   return fields;
 };
@@ -45,10 +51,15 @@ var generateAssociationFields = function generateAssociationFields(associations,
  * @param {*} types Existing `GraphQLObjectType` types, created from all the Sequelize models
  */
 var generateGraphQLType = function generateGraphQLType(model, types) {
-  return new GraphQLObjectType({
-    name: model.name,
+  var isInput = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var GraphQLClass = isInput ? GraphQLInputObjectType : GraphQLObjectType;
+  return new GraphQLClass({
+    name: isInput ? model.name + 'Input' : model.name,
     fields: function fields() {
-      return Object.assign(attributeFields(model), generateAssociationFields(model.associations, types));
+      return Object.assign(attributeFields(model, {
+        allowNull: !!isInput
+      }), generateAssociationFields(model.associations, types, isInput));
     }
   });
 };
@@ -60,15 +71,18 @@ var generateGraphQLType = function generateGraphQLType(model, types) {
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the types
  */
+// This function is exported
 var generateModelTypes = function generateModelTypes(models) {
-  var types = {};
+  var outputTypes = {};
+  var inputTypes = {};
   for (var modelName in models) {
     // Only our models, not Sequelize nor sequelize
     if (models[modelName].hasOwnProperty('name') && modelName !== 'Sequelize') {
-      types[modelName] = generateGraphQLType(models[modelName], types);
+      outputTypes[modelName] = generateGraphQLType(models[modelName], outputTypes);
+      inputTypes[modelName] = generateGraphQLType(models[modelName], inputTypes, true);
     }
   }
-  return types;
+  return { outputTypes: outputTypes, inputTypes: inputTypes };
 };
 
 /**
@@ -78,12 +92,11 @@ var generateModelTypes = function generateModelTypes(models) {
  * from Sequelize models.
  * @param {*} models The sequelize models used to create the root `GraphQLSchema`
  */
-var generateQueryRootType = function generateQueryRootType(models, types) {
-  var modelTypes = types || generateModelTypes(models);
+var generateQueryRootType = function generateQueryRootType(models, outputTypes) {
   return new GraphQLObjectType({
-    name: 'Root',
-    fields: Object.keys(modelTypes).reduce(function (fields, modelTypeName) {
-      var modelType = modelTypes[modelTypeName];
+    name: 'Root_Query',
+    fields: Object.keys(outputTypes).reduce(function (fields, modelTypeName) {
+      var modelType = outputTypes[modelTypeName];
       return Object.assign(fields, _defineProperty({}, modelType.name + 's', {
         // TODO remove 's'
         type: new GraphQLList(modelType),
@@ -93,13 +106,43 @@ var generateQueryRootType = function generateQueryRootType(models, types) {
   });
 };
 
+// const generateMutationRootType = (models, inputTypes, outputTypes) => {
+//   return new GraphQLObjectType({
+//     name: 'Root_Mutations',
+//     fields: Object.keys(inputTypes).reduce(
+//       (fields, modelInputTypeName) => {
+//         const modelInputType = inputTypes[modelInputTypeName]
+//         const toReturn = Object.assign(fields, {
+//           [modelInputTypeName + 'Create']: {
+//             type: outputTypes[modelInputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
+//             description: 'Create a ' + modelInputTypeName,
+//             args: {
+//               [modelInputTypeName]: {type: modelInputType}
+//             },
+//             resolve: (source, {model}, context, info) => {
+//               // args = {model}
+//               return models[modelInputTypeName].create(model)
+//             }
+//           }
+//         })
+//         return toReturn
+//       },
+//       {}
+//     )
+//   })
+// }
+
+// This function is exported
 var generateSchema = function generateSchema(models, types) {
+  var modelTypes = types || generateModelTypes(models);
   return {
-    query: generateQueryRootType(models, types)
+    query: generateQueryRootType(models, modelTypes.outputTypes)
+    // mutation: generateMutationRootType(models, modelTypes)
   };
 };
 
 module.exports = {
+  generateGraphQLType: generateGraphQLType,
   generateModelTypes: generateModelTypes,
   generateSchema: generateSchema
 };
