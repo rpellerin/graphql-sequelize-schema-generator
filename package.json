@@ -1,6 +1,6 @@
 {
   "name": "graphql-sequelize-schema-generator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A helper function to automatically generate `GraphQLSchema` from Sequelize models.",
   "main": "index.js",
   "scripts": {

@@ -21,6 +21,35 @@ exports[`outputs the correct schema (build version) 1`] = `
               }
             }
           },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            }
+          },
           resolve: #function#
         },
         Group: Object{
@@ -33,6 +62,35 @@ exports[`outputs the correct schema (build version) 1`] = `
                 name: \\"Group\\",
                 fields: #function#
               }
+            }
+          },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
             }
           },
           resolve: #function#
@@ -49,6 +107,35 @@ exports[`outputs the correct schema (build version) 1`] = `
               }
             }
           },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            }
+          },
           resolve: #function#
         },
         User: Object{
@@ -61,6 +148,35 @@ exports[`outputs the correct schema (build version) 1`] = `
                 name: \\"User\\",
                 fields: #function#
               }
+            }
+          },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
             }
           },
           resolve: #function#
@@ -438,6 +554,35 @@ exports[`outputs the correct schema 1`] = `
               }
             }
           },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            }
+          },
           resolve: #function#
         },
         Group: Object{
@@ -450,6 +595,35 @@ exports[`outputs the correct schema 1`] = `
                 name: \\"Group\\",
                 fields: #function#
               }
+            }
+          },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
             }
           },
           resolve: #function#
@@ -466,6 +640,35 @@ exports[`outputs the correct schema 1`] = `
               }
             }
           },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            }
+          },
           resolve: #function#
         },
         User: Object{
@@ -478,6 +681,35 @@ exports[`outputs the correct schema 1`] = `
                 name: \\"User\\",
                 fields: #function#
               }
+            }
+          },
+          args: Object{
+            id: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            where: Object{
+              type: GraphQLScalarType{
+                name: \\"SequelizeJSON\\",
+                description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                _scalarConfig: Object{
+                  name: \\"SequelizeJSON\\",
+                  description: \\"The \`JSON\` scalar type represents raw JSON as values.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              },
+              description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
             }
           },
           resolve: #function#

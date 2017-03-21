@@ -26,10 +26,9 @@ This package assumes you have `graphql` and `sequelize` already installed (both 
 ## Usage
 
 ```javascript
-var { GraphQLSchema } = require('graphql')
 var {generateModelTypes, generateSchema} = require('graphql-sequelize-schema-generator')
 var models = require('./models')
-var schema = GraphQLSchema(generateSchema(models)) // Generates the schema
+var schema = generateSchema(models) // Generates the schema
 // OR
 var types = generateModelTypes(models)
 var schema = generateSchema(models, types) // Generates the schema by reusing the types
@@ -41,7 +40,7 @@ var schema = generateSchema(models, types) // Generates the schema by reusing th
 var { GraphQLSchema } = require('graphql')
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
-const {generateModelTypes, generateSchema} = require('graphql-sequelize-schema-generator')
+const {generateSchema} = require('graphql-sequelize-schema-generator')
 const models = require('./models')
 
 var app = express()
@@ -49,7 +48,7 @@ var app = express()
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: GraphQLSchema(generateSchema(models)),
+    schema: new GraphQLSchema(generateSchema(models)),
     graphiql: true
   })
 )

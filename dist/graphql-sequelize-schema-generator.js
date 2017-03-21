@@ -11,7 +11,8 @@ var _require = require('graphql'),
 
 var _require2 = require('graphql-sequelize'),
     resolver = _require2.resolver,
-    attributeFields = _require2.attributeFields;
+    attributeFields = _require2.attributeFields,
+    defaultArgs = _require2.defaultArgs;
 
 /**
  * Returns the association fields of an entity.
@@ -101,6 +102,7 @@ var generateQueryRootType = function generateQueryRootType(models, outputTypes) 
       var modelType = outputTypes[modelTypeName];
       return Object.assign(fields, _defineProperty({}, modelType.name, {
         type: new GraphQLList(modelType),
+        args: defaultArgs(models[modelType.name]),
         resolve: resolver(models[modelType.name])
       }));
     }, {})

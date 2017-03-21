@@ -5,7 +5,7 @@ const {
   GraphQLInt,
   GraphQLNonNull
 } = require('graphql')
-const {resolver, attributeFields} = require('graphql-sequelize')
+const {resolver, attributeFields, defaultArgs} = require('graphql-sequelize')
 
 /**
  * Returns the association fields of an entity.
@@ -103,6 +103,7 @@ const generateQueryRootType = (models, outputTypes) => {
         return Object.assign(fields, {
           [modelType.name]: {
             type: new GraphQLList(modelType),
+            args: defaultArgs(models[modelType.name]),
             resolve: resolver(models[modelType.name])
           }
         })
