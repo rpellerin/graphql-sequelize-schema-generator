@@ -101,8 +101,7 @@ const generateQueryRootType = (models, outputTypes) => {
       (fields, modelTypeName) => {
         const modelType = outputTypes[modelTypeName]
         return Object.assign(fields, {
-          [modelType.name + 's']: {
-            // TODO remove 's'
+          [modelType.name]: {
             type: new GraphQLList(modelType),
             resolve: resolver(models[modelType.name])
           }

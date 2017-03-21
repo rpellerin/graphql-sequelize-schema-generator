@@ -9,7 +9,7 @@ exports[`outputs the correct schema (build version) 1`] = `
     _typeConfig: Object{
       name: \\"Root_Query\\",
       fields: Object{
-        Departments: Object{
+        Department: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Department\\",
@@ -23,7 +23,7 @@ exports[`outputs the correct schema (build version) 1`] = `
           },
           resolve: #function#
         },
-        Groups: Object{
+        Group: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Group\\",
@@ -37,7 +37,7 @@ exports[`outputs the correct schema (build version) 1`] = `
           },
           resolve: #function#
         },
-        Torrents: Object{
+        Torrent: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Torrent\\",
@@ -51,7 +51,7 @@ exports[`outputs the correct schema (build version) 1`] = `
           },
           resolve: #function#
         },
-        Users: Object{
+        User: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"User\\",
@@ -426,7 +426,7 @@ exports[`outputs the correct schema 1`] = `
     _typeConfig: Object{
       name: \\"Root_Query\\",
       fields: Object{
-        Departments: Object{
+        Department: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Department\\",
@@ -440,7 +440,7 @@ exports[`outputs the correct schema 1`] = `
           },
           resolve: #function#
         },
-        Groups: Object{
+        Group: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Group\\",
@@ -454,7 +454,7 @@ exports[`outputs the correct schema 1`] = `
           },
           resolve: #function#
         },
-        Torrents: Object{
+        Torrent: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"Torrent\\",
@@ -468,7 +468,7 @@ exports[`outputs the correct schema 1`] = `
           },
           resolve: #function#
         },
-        Users: Object{
+        User: Object{
           type: GraphQLList{
             ofType: GraphQLObjectType{
               name: \\"User\\",
