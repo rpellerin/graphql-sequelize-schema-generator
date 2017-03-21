@@ -5,7 +5,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var _require = require('graphql'),
     GraphQLObjectType = _require.GraphQLObjectType,
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
-    GraphQLList = _require.GraphQLList;
+    GraphQLList = _require.GraphQLList,
+    GraphQLInt = _require.GraphQLInt,
+    GraphQLNonNull = _require.GraphQLNonNull;
 
 var _require2 = require('graphql-sequelize'),
     resolver = _require2.resolver,
@@ -106,38 +108,51 @@ var generateQueryRootType = function generateQueryRootType(models, outputTypes) 
   });
 };
 
-// const generateMutationRootType = (models, inputTypes, outputTypes) => {
-//   return new GraphQLObjectType({
-//     name: 'Root_Mutations',
-//     fields: Object.keys(inputTypes).reduce(
-//       (fields, modelInputTypeName) => {
-//         const modelInputType = inputTypes[modelInputTypeName]
-//         const toReturn = Object.assign(fields, {
-//           [modelInputTypeName + 'Create']: {
-//             type: outputTypes[modelInputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
-//             description: 'Create a ' + modelInputTypeName,
-//             args: {
-//               [modelInputTypeName]: {type: modelInputType}
-//             },
-//             resolve: (source, {model}, context, info) => {
-//               // args = {model}
-//               return models[modelInputTypeName].create(model)
-//             }
-//           }
-//         })
-//         return toReturn
-//       },
-//       {}
-//     )
-//   })
-// }
+var generateMutationRootType = function generateMutationRootType(models, inputTypes, outputTypes) {
+  return new GraphQLObjectType({
+    name: 'Root_Mutations',
+    fields: Object.keys(inputTypes).reduce(function (fields, inputTypeName) {
+      var _Object$assign2;
+
+      var inputType = inputTypes[inputTypeName];
+      var toReturn = Object.assign(fields, (_Object$assign2 = {}, _defineProperty(_Object$assign2, inputTypeName + 'Create', {
+        type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
+        description: 'Create a ' + inputTypeName,
+        args: _defineProperty({}, inputTypeName, { type: inputType }),
+        resolve: function resolve(source, model, context, info) {
+          return models[inputTypeName].create(model[inputTypeName]);
+        }
+      }), _defineProperty(_Object$assign2, inputTypeName + 'Update', {
+        type: GraphQLInt,
+        description: 'Update a ' + inputTypeName,
+        args: _defineProperty({}, inputTypeName, { type: inputType }),
+        resolve: function resolve(source, model) {
+          return models[inputTypeName].update(model[inputTypeName], {
+            where: { id: model[inputTypeName].id }
+          }); // Returns the number of rows affected (0 or 1)
+        }
+      }), _defineProperty(_Object$assign2, inputTypeName + 'Delete', {
+        type: GraphQLInt,
+        description: 'Delete a ' + inputTypeName,
+        args: {
+          id: { type: new GraphQLNonNull(GraphQLInt) }
+        },
+        resolve: function resolve(value, _ref) {
+          var id = _ref.id;
+          return models[inputTypeName].destroy({ where: { id: id } });
+        } // Returns the number of rows affected (0 or 1)
+      }), _Object$assign2));
+      return toReturn;
+    }, {})
+  });
+};
 
 // This function is exported
 var generateSchema = function generateSchema(models, types) {
   var modelTypes = types || generateModelTypes(models);
   return {
-    query: generateQueryRootType(models, modelTypes.outputTypes)
-    // mutation: generateMutationRootType(models, modelTypes)
+    query: generateQueryRootType(models, modelTypes.outputTypes),
+    mutation: generateMutationRootType(models, modelTypes.inputTypes, modelTypes.outputTypes)
   };
 };
 

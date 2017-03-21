@@ -1,7 +1,9 @@
 const {
   GraphQLObjectType,
   GraphQLInputObjectType,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt,
+  GraphQLNonNull
 } = require('graphql')
 const {resolver, attributeFields} = require('graphql-sequelize')
 
@@ -111,38 +113,62 @@ const generateQueryRootType = (models, outputTypes) => {
   })
 }
 
-// const generateMutationRootType = (models, inputTypes, outputTypes) => {
-//   return new GraphQLObjectType({
-//     name: 'Root_Mutations',
-//     fields: Object.keys(inputTypes).reduce(
-//       (fields, modelInputTypeName) => {
-//         const modelInputType = inputTypes[modelInputTypeName]
-//         const toReturn = Object.assign(fields, {
-//           [modelInputTypeName + 'Create']: {
-//             type: outputTypes[modelInputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
-//             description: 'Create a ' + modelInputTypeName,
-//             args: {
-//               [modelInputTypeName]: {type: modelInputType}
-//             },
-//             resolve: (source, {model}, context, info) => {
-//               // args = {model}
-//               return models[modelInputTypeName].create(model)
-//             }
-//           }
-//         })
-//         return toReturn
-//       },
-//       {}
-//     )
-//   })
-// }
+const generateMutationRootType = (models, inputTypes, outputTypes) => {
+  return new GraphQLObjectType({
+    name: 'Root_Mutations',
+    fields: Object.keys(inputTypes).reduce(
+      (fields, inputTypeName) => {
+        const inputType = inputTypes[inputTypeName]
+        const toReturn = Object.assign(fields, {
+          [inputTypeName + 'Create']: {
+            type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
+            description: 'Create a ' + inputTypeName,
+            args: {
+              [inputTypeName]: {type: inputType}
+            },
+            resolve: (source, model, context, info) => {
+              return models[inputTypeName].create(model[inputTypeName])
+            }
+          },
+          [inputTypeName + 'Update']: {
+            type: GraphQLInt,
+            description: 'Update a ' + inputTypeName,
+            args: {
+              [inputTypeName]: {type: inputType}
+            },
+            resolve: (source, model) => {
+              return models[inputTypeName].update(model[inputTypeName], {
+                where: {id: model[inputTypeName].id}
+              }) // Returns the number of rows affected (0 or 1)
+            }
+          },
+          [inputTypeName + 'Delete']: {
+            type: GraphQLInt,
+            description: 'Delete a ' + inputTypeName,
+            args: {
+              id: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve: (value, {id}) =>
+              models[inputTypeName].destroy({where: {id}}) // Returns the number of rows affected (0 or 1)
+          }
+        })
+        return toReturn
+      },
+      {}
+    )
+  })
+}
 
 // This function is exported
 const generateSchema = (models, types) => {
   const modelTypes = types || generateModelTypes(models)
   return {
-    query: generateQueryRootType(models, modelTypes.outputTypes)
-    // mutation: generateMutationRootType(models, modelTypes)
+    query: generateQueryRootType(models, modelTypes.outputTypes),
+    mutation: generateMutationRootType(
+      models,
+      modelTypes.inputTypes,
+      modelTypes.outputTypes
+    )
   }
 }
 
