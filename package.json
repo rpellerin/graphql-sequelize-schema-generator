@@ -4,12 +4,15 @@
   "description": "A helper function to automatically generate `GraphQLSchema` from Sequelize models.",
   "main": "index.js",
   "scripts": {
-    "test-db-reset": "rm -rf tests/database.db && sequelize db:migrate",
-    "test": "npm run test-db-reset && jest",
     "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "check": "npm run lint && npm run test",
+    "clean": "rm -f dist/*",
     "format": "prettier-eslint --write \"src/*.js\"",
-    "lint": "eslint src",
-    "check": "npm run lint && npm run test"
+    "jest": "jest",
+    "jest-coverage": "npm run jest -- --coverage",
+    "lint": "eslint src --cache",
+    "test": "npm run test-db-reset && npm run jest",
+    "test-db-reset": "rm -rf tests/database.db && sequelize db:migrate"
   },
   "repository": {
     "type": "git",
