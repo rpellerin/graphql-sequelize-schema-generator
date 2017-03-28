@@ -12,6 +12,7 @@ var _require = require('graphql'),
 var _require2 = require('graphql-sequelize'),
     resolver = _require2.resolver,
     attributeFields = _require2.attributeFields,
+    defaultListArgs = _require2.defaultListArgs,
     defaultArgs = _require2.defaultArgs;
 
 /**
@@ -102,7 +103,7 @@ var generateQueryRootType = function generateQueryRootType(models, outputTypes) 
       var modelType = outputTypes[modelTypeName];
       return Object.assign(fields, _defineProperty({}, modelType.name, {
         type: new GraphQLList(modelType),
-        args: defaultArgs(models[modelType.name]),
+        args: Object.assign(defaultArgs(models[modelType.name]), defaultListArgs()),
         resolve: resolver(models[modelType.name])
       }));
     }, {})

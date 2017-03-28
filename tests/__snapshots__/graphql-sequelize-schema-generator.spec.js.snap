@@ -48,6 +48,45 @@ exports[`outputs the correct schema (build version) 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -91,6 +130,45 @@ exports[`outputs the correct schema (build version) 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -134,6 +212,45 @@ exports[`outputs the correct schema (build version) 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -177,6 +294,45 @@ exports[`outputs the correct schema (build version) 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -573,6 +729,45 @@ exports[`outputs the correct schema 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -616,6 +811,45 @@ exports[`outputs the correct schema 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -659,6 +893,45 @@ exports[`outputs the correct schema 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
@@ -702,6 +975,45 @@ exports[`outputs the correct schema 1`] = `
                 }
               },
               description: \\"A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/\\"
+            },
+            limit: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            order: Object{
+              type: GraphQLScalarType{
+                name: \\"String\\",
+                description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                _scalarConfig: Object{
+                  name: \\"String\\",
+                  description: \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
+            },
+            offset: Object{
+              type: GraphQLScalarType{
+                name: \\"Int\\",
+                description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                _scalarConfig: Object{
+                  name: \\"Int\\",
+                  description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
+                  serialize: #function#,
+                  parseValue: #function#,
+                  parseLiteral: #function#
+                }
+              }
             }
           },
           resolve: #function#
