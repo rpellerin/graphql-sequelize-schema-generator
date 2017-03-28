@@ -126,20 +126,30 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
             args: {
               [inputTypeName]: {type: inputType}
             },
-            resolve: (source, model, context, info) => {
-              return models[inputTypeName].create(model[inputTypeName])
+            resolve: (source, args, context, info) => {
+              return models[inputTypeName].create(args[inputTypeName])
             }
           },
           [inputTypeName + 'Update']: {
-            type: GraphQLInt,
+            type: outputTypes[inputTypeName],
             description: 'Update a ' + inputTypeName,
             args: {
               [inputTypeName]: {type: inputType}
             },
-            resolve: (source, model) => {
-              return models[inputTypeName].update(model[inputTypeName], {
-                where: {id: model[inputTypeName].id}
-              }) // Returns the number of rows affected (0 or 1)
+            resolve: (source, args, context, info) => {
+              return models[inputTypeName]
+                .update(args[inputTypeName], {
+                  where: {id: args[inputTypeName].id}
+                })
+                .then(boolean => {
+                  // `boolean` equals the number of rows affected (0 or 1)
+                  return resolver(models[inputTypeName])(
+                    source,
+                    {id: args[inputTypeName].id},
+                    context,
+                    info
+                  )
+                })
             }
           },
           [inputTypeName + 'Delete']: {

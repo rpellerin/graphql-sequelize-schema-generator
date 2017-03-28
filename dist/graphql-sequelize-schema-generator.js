@@ -120,17 +120,20 @@ var generateMutationRootType = function generateMutationRootType(models, inputTy
         type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
         description: 'Create a ' + inputTypeName,
         args: _defineProperty({}, inputTypeName, { type: inputType }),
-        resolve: function resolve(source, model, context, info) {
-          return models[inputTypeName].create(model[inputTypeName]);
+        resolve: function resolve(source, args, context, info) {
+          return models[inputTypeName].create(args[inputTypeName]);
         }
       }), _defineProperty(_Object$assign2, inputTypeName + 'Update', {
-        type: GraphQLInt,
+        type: outputTypes[inputTypeName],
         description: 'Update a ' + inputTypeName,
         args: _defineProperty({}, inputTypeName, { type: inputType }),
-        resolve: function resolve(source, model) {
-          return models[inputTypeName].update(model[inputTypeName], {
-            where: { id: model[inputTypeName].id }
-          }); // Returns the number of rows affected (0 or 1)
+        resolve: function resolve(source, args, context, info) {
+          return models[inputTypeName].update(args[inputTypeName], {
+            where: { id: args[inputTypeName].id }
+          }).then(function (boolean) {
+            // `boolean` equals the number of rows affected (0 or 1)
+            return resolver(models[inputTypeName])(source, { id: args[inputTypeName].id }, context, info);
+          });
         }
       }), _defineProperty(_Object$assign2, inputTypeName + 'Delete', {
         type: GraphQLInt,

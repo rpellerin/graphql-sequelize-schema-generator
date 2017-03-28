@@ -217,15 +217,13 @@ exports[`outputs the correct schema (build version) 1`] = `
           resolve: #function#
         },
         DepartmentUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Department\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Department\\",
+              fields: #function#
             }
           },
           description: \\"Update a Department\\",
@@ -301,15 +299,13 @@ exports[`outputs the correct schema (build version) 1`] = `
           resolve: #function#
         },
         GroupUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Group\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Group\\",
+              fields: #function#
             }
           },
           description: \\"Update a Group\\",
@@ -385,15 +381,13 @@ exports[`outputs the correct schema (build version) 1`] = `
           resolve: #function#
         },
         TorrentUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Torrent\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Torrent\\",
+              fields: #function#
             }
           },
           description: \\"Update a Torrent\\",
@@ -469,15 +463,13 @@ exports[`outputs the correct schema (build version) 1`] = `
           resolve: #function#
         },
         UserUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"User\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"User\\",
+              fields: #function#
             }
           },
           description: \\"Update a User\\",
@@ -750,15 +742,13 @@ exports[`outputs the correct schema 1`] = `
           resolve: #function#
         },
         DepartmentUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Department\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Department\\",
+              fields: #function#
             }
           },
           description: \\"Update a Department\\",
@@ -834,15 +824,13 @@ exports[`outputs the correct schema 1`] = `
           resolve: #function#
         },
         GroupUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Group\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Group\\",
+              fields: #function#
             }
           },
           description: \\"Update a Group\\",
@@ -918,15 +906,13 @@ exports[`outputs the correct schema 1`] = `
           resolve: #function#
         },
         TorrentUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"Torrent\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"Torrent\\",
+              fields: #function#
             }
           },
           description: \\"Update a Torrent\\",
@@ -1002,15 +988,13 @@ exports[`outputs the correct schema 1`] = `
           resolve: #function#
         },
         UserUpdate: Object{
-          type: GraphQLScalarType{
-            name: \\"Int\\",
-            description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-            _scalarConfig: Object{
-              name: \\"Int\\",
-              description: \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. \\",
-              serialize: #function#,
-              parseValue: #function#,
-              parseLiteral: #function#
+          type: GraphQLObjectType{
+            name: \\"User\\",
+            description: undefined,
+            isTypeOf: undefined,
+            _typeConfig: Object{
+              name: \\"User\\",
+              fields: #function#
             }
           },
           description: \\"Update a User\\",
