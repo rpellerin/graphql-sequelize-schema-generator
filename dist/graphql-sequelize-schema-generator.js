@@ -117,6 +117,7 @@ var generateMutationRootType = function generateMutationRootType(models, inputTy
       var _Object$assign2;
 
       var inputType = inputTypes[inputTypeName];
+      var key = models[inputTypeName].primaryKeyAttributes[0];
       var toReturn = Object.assign(fields, (_Object$assign2 = {}, _defineProperty(_Object$assign2, inputTypeName + 'Create', {
         type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
         description: 'Create a ' + inputTypeName,
@@ -129,22 +130,20 @@ var generateMutationRootType = function generateMutationRootType(models, inputTy
         description: 'Update a ' + inputTypeName,
         args: _defineProperty({}, inputTypeName, { type: inputType }),
         resolve: function resolve(source, args, context, info) {
+          var where = _defineProperty({}, key, args[inputTypeName][key]);
           return models[inputTypeName].update(args[inputTypeName], {
-            where: { id: args[inputTypeName].id }
+            where: where
           }).then(function (boolean) {
             // `boolean` equals the number of rows affected (0 or 1)
-            return resolver(models[inputTypeName])(source, { id: args[inputTypeName].id }, context, info);
+            return resolver(models[inputTypeName])(source, where, context, info);
           });
         }
       }), _defineProperty(_Object$assign2, inputTypeName + 'Delete', {
         type: GraphQLInt,
         description: 'Delete a ' + inputTypeName,
-        args: {
-          id: { type: new GraphQLNonNull(GraphQLInt) }
-        },
-        resolve: function resolve(value, _ref) {
-          var id = _ref.id;
-          return models[inputTypeName].destroy({ where: { id: id } });
+        args: _defineProperty({}, key, { type: new GraphQLNonNull(GraphQLInt) }),
+        resolve: function resolve(value, where) {
+          return models[inputTypeName].destroy({ where: where });
         } // Returns the number of rows affected (0 or 1)
       }), _Object$assign2));
       return toReturn;
