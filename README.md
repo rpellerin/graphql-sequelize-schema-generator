@@ -1,3 +1,5 @@
+**DEPRECATED: unmaintained**
+
 # graphql-sequelize-schema-generator
 
 A helper function that automatically generates `GraphQLSchema` from Sequelize models.
