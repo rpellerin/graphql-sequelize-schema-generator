@@ -127,7 +127,7 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
     fields: Object.keys(inputTypes).reduce(
       (fields, inputTypeName) => {
         const inputType = inputTypes[inputTypeName]
-        const key = models[inputTypeName].primaryKeyAttributes[0];
+        const key = models[inputTypeName].primaryKeyAttributes[0]
         const toReturn = Object.assign(fields, {
           [inputTypeName + 'Create']: {
             type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
@@ -146,7 +146,7 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
               [inputTypeName]: {type: inputType}
             },
             resolve: (source, args, context, info) => {
-              const where = { [key]: args[inputTypeName][key] };
+              const where = { [key]: args[inputTypeName][key] }
               return models[inputTypeName]
                 .update(args[inputTypeName], {
                   where
