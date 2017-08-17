@@ -127,6 +127,7 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
     fields: Object.keys(inputTypes).reduce(
       (fields, inputTypeName) => {
         const inputType = inputTypes[inputTypeName]
+        const key = models[inputTypeName].primaryKeyAttributes[0]
         const toReturn = Object.assign(fields, {
           [inputTypeName + 'Create']: {
             type: outputTypes[inputTypeName], // what is returned by resolve, must be of type GraphQLObjectType
@@ -145,15 +146,16 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
               [inputTypeName]: {type: inputType}
             },
             resolve: (source, args, context, info) => {
+              const where = { [key]: args[inputTypeName][key] }
               return models[inputTypeName]
                 .update(args[inputTypeName], {
-                  where: {id: args[inputTypeName].id}
+                  where
                 })
                 .then(boolean => {
                   // `boolean` equals the number of rows affected (0 or 1)
                   return resolver(models[inputTypeName])(
                     source,
-                    {id: args[inputTypeName].id},
+                    where,
                     context,
                     info
                   )
@@ -164,10 +166,10 @@ const generateMutationRootType = (models, inputTypes, outputTypes) => {
             type: GraphQLInt,
             description: 'Delete a ' + inputTypeName,
             args: {
-              id: {type: new GraphQLNonNull(GraphQLInt)}
+              [key]: {type: new GraphQLNonNull(GraphQLInt)}
             },
-            resolve: (value, {id}) =>
-              models[inputTypeName].destroy({where: {id}}) // Returns the number of rows affected (0 or 1)
+            resolve: (value, where) =>
+              models[inputTypeName].destroy({ where }) // Returns the number of rows affected (0 or 1)
           }
         })
         return toReturn
